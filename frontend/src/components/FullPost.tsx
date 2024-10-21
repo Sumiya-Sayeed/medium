@@ -1,4 +1,3 @@
-import React from 'react';
 import Appbar from '../components/Appbar';
 import { PostProps } from '../hooks';
 import Avatar from '../components/Avatar';

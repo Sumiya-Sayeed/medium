@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Appbar from '../components/Appbar';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { BACKEND_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
@@ -33,9 +32,9 @@ const Publish = () => {
         <div className='max-w-screen-lg w-full mb-1 p-7'>
           <textarea
             id='value'
-            rows='4'
+            rows={4}
             onChange={(e) => setValue(e.target.value)}
-            class='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+            className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500'
             placeholder='Write your thoughts here...'
           ></textarea>
         </div>

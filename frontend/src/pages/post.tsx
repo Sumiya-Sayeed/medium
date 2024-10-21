@@ -5,8 +5,8 @@ import Skeleton from '../components/Skeleton';
 import Appbar from '../components/Appbar';
 
 const Post = () => {
-  const { id } = useParams();
-  const { loading, post } = usePost({ id });
+  const { id } = useParams<{ id: string }>();
+  const { loading, post } = usePost({ id: id as string });
 
   if (loading)
     return (

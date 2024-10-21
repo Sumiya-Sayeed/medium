@@ -12,6 +12,7 @@ export const userRouter = new Hono<{
 }>();
 
 userRouter.post('/signup', async (c) => {
+  console.log(c.req, 'req');
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());

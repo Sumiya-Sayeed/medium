@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LabelledInput from './LabelledInput';
 import { SignUpInput } from '@sumiya_sayeed/medium-common-1';
@@ -24,7 +24,7 @@ const Auth = ({ type = 'signup' }: { type: 'signup' | 'signin' }) => {
 
       localStorage.setItem('token', jwt);
       navigate('/posts');
-    } catch (error: AxiosError) {
+    } catch (error: AxiosError | any) {
       console.log(error?.response?.message);
       alert(`Couldn't sign up. Please try again, ${error?.response?.message}`);
       console.log('error', error);

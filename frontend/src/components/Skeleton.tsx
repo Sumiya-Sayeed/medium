@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Skeleton = () => {
   return (
     <div role='status' className='max-w-sm animate-pulse'>

@@ -22,7 +22,7 @@ interface UserPayload extends JWTPayload {
 postRouter.use('/*', async (c, next) => {
   const authHeader = c.req.header('authorization') || '';
 
-  try {
+  try { 
     const user = (await verify(authHeader, c.env.JWT_SECRET)) as UserPayload;
 
     if (user) {
@@ -66,7 +66,7 @@ postRouter.post('/create', async (c) => {
     console.log(error);
     c.status(411);
     return c.json({
-      message: 'User already exists',
+      message: 'User is unuthorized',
     });
   }
 });
@@ -107,7 +107,18 @@ postRouter.get('/bulk', async (c) => {
   }).$extends(withAccelerate());
 
   try {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      select: {
+        content: true,
+        title: true,
+        id: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
 
     return c.json({
       posts,
@@ -132,6 +143,16 @@ postRouter.get('/:id', async (c) => {
     const post = await prisma.post.findFirst({
       where: {
         id,
+      },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
