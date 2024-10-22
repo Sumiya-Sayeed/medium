@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import LabelledInput from './LabelledInput';
 import { SignUpInput } from '@sumiya_sayeed/medium-common-1';
 import { BACKEND_URL } from '../config';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
+import { AxiosError } from 'axios';
+import { AxiosResponse } from 'axios';
 
 const Auth = ({ type = 'signup' }: { type: 'signup' | 'signin' }) => {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ const Auth = ({ type = 'signup' }: { type: 'signup' | 'signin' }) => {
 
   const sendRequest = async () => {
     try {
-      const response = await axios.post(
+      const response: AxiosResponse = await axios.post(
         `${BACKEND_URL}/api/v1/user/${type === 'signup' ? 'signup' : 'signin'}`,
         postInputs,
       );
@@ -24,7 +26,7 @@ const Auth = ({ type = 'signup' }: { type: 'signup' | 'signin' }) => {
 
       localStorage.setItem('token', jwt);
       navigate('/posts');
-    } catch (error: AxiosError | any) {
+    } catch (error: AxiosError) {
       console.log(error?.response?.message);
       alert(`Couldn't sign up. Please try again, ${error?.response?.message}`);
       console.log('error', error);

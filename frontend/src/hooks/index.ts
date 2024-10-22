@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import { BACKEND_URL } from '../config';
 
@@ -23,7 +23,7 @@ export const usePost = ({ id }: { id: string }) => {
           Authorization: `${localStorage.getItem('token')}`,
         },
       })
-      .then((res) => {
+      .then((res: AxiosResponse) => {
         setPost(res.data.post);
         setLoading(false);
       });
@@ -48,7 +48,7 @@ export const usePosts = () => {
           Authorization: `${localStorage.getItem('token')}`,
         },
       })
-      .then((res) => {
+      .then((res: AxiosResponse) => {
         setPosts(res.data.posts);
         setLoading(false);
       });

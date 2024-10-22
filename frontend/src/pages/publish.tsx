@@ -1,7 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import Appbar from '../components/Appbar';
-import 'react-quill/dist/quill.snow.css';
 import { BACKEND_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +39,7 @@ const Publish = () => {
         </div>
         <button
           onClick={async () => {
-            const response = await axios.post(
+            const response: AxiosResponse = await axios.post(
               `${BACKEND_URL}/api/v1/post/create`,
               {
                 title,
