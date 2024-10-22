@@ -15,6 +15,7 @@ const Post = () => {
         <div className='flex justify-center flex-col items-center w-full'>
           <Skeleton />
           <Skeleton />
+          Loading...
           <Skeleton />
         </div>
       </div>
